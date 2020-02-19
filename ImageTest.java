@@ -2,7 +2,6 @@ import java.awt.image.BufferedImage;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.geometry.Insets;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
@@ -11,23 +10,22 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.PixelReader;
-import javafx.scene.paint.Color;
 import java.io.File;
-/**
- * Write a description of JavaFX class ImageTest here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class ImageTest extends Application
-{
-    private Image img1 = new Image("res/horse.png");
-    private Image img2 = new Image("res/horse2.png");
+import java.util.ArrayList;
+import java.util.Random;
+
+public class ImageTest extends Application{
     @Override
     public void start(Stage stage)
     {
-        double imgH = 300;
-        double imgW = 300;
+
+        ArrayList<String> files = selectFiles();
+
+        Image img1 = new Image("res/" + files.get(0));//Potentially resize later?
+        Image img2 = new Image("res/" + files.get(1));//Potentially resize later?
+
+        double imgH = 1050;
+        double imgW = 1400;
         WritableImage wImg = new WritableImage((int)img1.getWidth(), (int)img1.getHeight());
         PixelReader pR = img1.getPixelReader();
         PixelReader pR2 = img2.getPixelReader();
@@ -37,23 +35,56 @@ public class ImageTest extends Application
             for(int y = 0; y < (int)img1.getHeight(); y++){
                 if(y % 2 == 0){
                     pW.setArgb(x, y, pR.getArgb(x,y));
+                }else{
+                    pW.setArgb(x, y, pR2.getArgb(x,y));
                 }
             }
         }
 
+        files = selectFiles();
+
+        Image img3 = new Image("res/" + files.get(0));//Potentially resize later?
+        Image img4 = new Image("res/" + files.get(1));//Potentially resize later?WritableImage wImg = new WritableImage((int)img1.getWidth(), (int)img1.getHeight());
+        WritableImage wImg2 = new WritableImage((int)img3.getWidth(), (int)img3.getHeight());
+        PixelReader pR3 = img3.getPixelReader();
+        PixelReader pR4 = img4.getPixelReader();
+        PixelWriter pW2 = wImg2.getPixelWriter();
+        for(int x = 0; x < (int)img3.getWidth(); x++){
+            for(int y = 0; y < (int)img3.getHeight(); y++){
+                if(y % 2 == 0){
+                    pW2.setArgb(x, y, pR3.getArgb(x,y));
+                }else{
+                    pW2.setArgb(x, y, pR4.getArgb(x,y));
+                }
+            }
+        }
+
+        WritableImage wImg3 = new WritableImage((int)img3.getWidth(), (int)img3.getHeight());
+        PixelReader pR5 = wImg.getPixelReader();
+        PixelReader pR6 = wImg2.getPixelReader();
+        PixelWriter pW3 = wImg3.getPixelWriter();
+        for(int y = 0; y < (int)img3.getHeight(); y++){
+            for(int x = 0; x < (int)img3.getWidth(); x++){
+                if(y % 2 == 0){
+                    pW3.setArgb(x, y, pR5.getArgb(x,y));
+                }else{
+                    pW3.setArgb(x, y, pR6.getArgb(x,y));
+                }
+            }
+        }
         // Create a new grid pane
-        ImageView img = new ImageView(wImg);
-        img.setFitHeight(300);
-        img.setFitWidth(300);
+        ImageView img = new ImageView(wImg3);
+        img.setFitHeight(800);
+        img.setFitWidth(800);
         try {
             // retrieve image
             File outputfile = new File("saved.png");
             BufferedImage bImage = SwingFXUtils.fromFXImage(img.getImage(), null);
             ImageIO.write(bImage, "png", outputfile);
         } catch (Exception e) {
+            e.printStackTrace();
         }
         StackPane pane = new StackPane(img);
-        pane.setPadding(new Insets(10, 10, 10, 10));
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
         Scene scene = new Scene(pane, 300,100);
@@ -64,4 +95,51 @@ public class ImageTest extends Application
         // Show the Stage (window)
         stage.show();
     }
+
+    public ArrayList<String> selectFiles(){
+        ArrayList<String> tempFiles = new ArrayList<String>();
+        ArrayList<String> sendFiles = new ArrayList<String>();
+        try{
+            File folder = new File("res/");
+            for(File f : folder.listFiles()){
+                tempFiles.add(f.getName());
+            }
+
+            Random rand = new Random();
+            int choice = 0;
+            int choice2 = 0;
+
+            //Randomizes
+            while(choice == choice2){
+                choice = rand.nextInt(tempFiles.size());
+                choice2 = rand.nextInt(tempFiles.size());
+            }
+            sendFiles.add(tempFiles.get(choice));
+            sendFiles.add(tempFiles.get(choice2));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        System.out.println(sendFiles.get(0));
+        System.out.println(sendFiles.get(1));
+        return sendFiles;
+    }
+
+    /* Will add later. Will need to import 2DGraphics, but might make
+     * images an object so I can do that in the class if I go that route
+    public String resize(String f){
+    ImageView img = new ImageView(new Image(f));
+    img.setFitHeight(1000);
+    img.setFitWidth(1000);
+    try {
+    // retrieve image
+    File outputfile = new File(f);
+    BufferedImage bImage = (BufferedImage) new Image(;
+    ImageIO.write(bImage, "png", outputfile);
+    System.out.println(bImage.getWidth());
+    System.out.println(bImage.getWidth());
+    } catch (Exception e) {
+    e.printStackTrace();
+    }
+    return f;
+    }*/
 }
