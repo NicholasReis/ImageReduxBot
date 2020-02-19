@@ -18,14 +18,61 @@ public class ImageTest extends Application{
     @Override
     public void start(Stage stage)
     {
+        ImageView img = smooth(defaultRedux());
+        img.setFitHeight(1000);
+        img.setFitWidth(1000);
+        try {
+            // retrieve image
+            File outputfile = new File("saved.png");
+            BufferedImage bImage = SwingFXUtils.fromFXImage(img.getImage(), null);
+            ImageIO.write(bImage, "png", outputfile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        StackPane pane = new StackPane(img);
+        // JavaFX must have a Scene (window content) inside a Stage (window)
+        Scene scene = new Scene(pane, 300,100);
+        stage.setTitle("JavaFX Example");
+        stage.setScene(scene);
+        stage.setWidth(1000);
+        stage.setHeight(1000);
+        // Show the Stage (window)
+        stage.show();
+    }
 
+    public ArrayList<String> selectFiles(){
+        ArrayList<String> tempFiles = new ArrayList<String>();
+        ArrayList<String> sendFiles = new ArrayList<String>();
+        try{
+            File folder = new File("res/");
+            for(File f : folder.listFiles()){
+                tempFiles.add(f.getName());
+            }
+
+            Random rand = new Random();
+            int choice = 0;
+            int choice2 = 0;
+
+            //Randomizes
+            while(choice == choice2){
+                choice = rand.nextInt(tempFiles.size());
+                choice2 = rand.nextInt(tempFiles.size());
+            }
+            sendFiles.add(tempFiles.get(choice));
+            sendFiles.add(tempFiles.get(choice2));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        System.out.println(sendFiles.get(0));
+        System.out.println(sendFiles.get(1));
+        return sendFiles;
+    }
+
+    public WritableImage defaultRedux(){
         ArrayList<String> files = selectFiles();
 
         Image img1 = new Image("res/" + files.get(0));//Potentially resize later?
         Image img2 = new Image("res/" + files.get(1));//Potentially resize later?
-
-        double imgH = 1050;
-        double imgW = 1400;
         WritableImage wImg = new WritableImage((int)img1.getWidth(), (int)img1.getHeight());
         PixelReader pR = img1.getPixelReader();
         PixelReader pR2 = img2.getPixelReader();
@@ -73,57 +120,31 @@ public class ImageTest extends Application{
             }
         }
         // Create a new grid pane
-        ImageView img = new ImageView(wImg3);
-        img.setFitHeight(800);
-        img.setFitWidth(800);
-        try {
-            // retrieve image
-            File outputfile = new File("saved.png");
-            BufferedImage bImage = SwingFXUtils.fromFXImage(img.getImage(), null);
-            ImageIO.write(bImage, "png", outputfile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        StackPane pane = new StackPane(img);
-
-        // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(pane, 300,100);
-        stage.setTitle("JavaFX Example");
-        stage.setScene(scene);
-        stage.setWidth(imgW);
-        stage.setHeight(imgH);
-        // Show the Stage (window)
-        stage.show();
+        return wImg3;
     }
 
-    public ArrayList<String> selectFiles(){
-        ArrayList<String> tempFiles = new ArrayList<String>();
-        ArrayList<String> sendFiles = new ArrayList<String>();
-        try{
-            File folder = new File("res/");
-            for(File f : folder.listFiles()){
-                tempFiles.add(f.getName());
-            }
+    public ImageView smooth(WritableImage img){
 
-            Random rand = new Random();
-            int choice = 0;
-            int choice2 = 0;
+        PixelReader pR = img.getPixelReader();
+        PixelWriter pW = img.getPixelWriter();
+        for(int count = 0; count < 3; count++){
+            for(int x = 0; x < 1000; x++){
+                for(int y = 0; y < 1000; y++){
+                    if(x > 0 && x < 999){
+                        int curCol = pR.getArgb(x,y);
+                        int prevCol = pR.getArgb(x-1,y);
+                        int nextCol = pR.getArgb(x+1,y);
 
-            //Randomizes
-            while(choice == choice2){
-                choice = rand.nextInt(tempFiles.size());
-                choice2 = rand.nextInt(tempFiles.size());
+                        //Squares the surrounding pixel values and averages them to smooth the image
+                        pW.setArgb(((int)(Math.sqrt(curCol)+Math.sqrt(prevCol)+Math.sqrt(nextCol))/3), x, y);
+
+                    }
+                }
             }
-            sendFiles.add(tempFiles.get(choice));
-            sendFiles.add(tempFiles.get(choice2));
-        }catch(Exception e){
-            e.printStackTrace();
         }
-        System.out.println(sendFiles.get(0));
-        System.out.println(sendFiles.get(1));
-        return sendFiles;
+        // Create a new grid pane
+        return new ImageView(img);
     }
-
     /* Will add later. Will need to import 2DGraphics, but might make
      * images an object so I can do that in the class if I go that route
     public String resize(String f){
