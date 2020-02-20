@@ -18,7 +18,7 @@ public class ImageTest extends Application{
     @Override
     public void start(Stage stage)
     {
-        ImageView img = smooth(defaultRedux());
+        ImageView img = smooth(randomPixelizer());
         img.setFitHeight(1000);
         img.setFitWidth(1000);
         try {
@@ -121,6 +121,35 @@ public class ImageTest extends Application{
         }
         // Create a new grid pane
         return wImg3;
+    }
+
+
+    public WritableImage randomPixelizer(){
+        ArrayList<String> files = selectFiles();
+
+        Image img1 = new Image("res/" + files.get(0));//Potentially resize later?
+        Image img2 = new Image("res/" + files.get(1));//Potentially resize later?
+
+        PixelReader pR1 = img1.getPixelReader();
+        PixelReader pR2 = img2.getPixelReader();
+        WritableImage wImg = new WritableImage((int)img1.getWidth(), (int)img1.getHeight());
+        PixelWriter pW = wImg.getPixelWriter();
+
+        for(int x = 0; x < 1000; x++){
+            for(int y = 0; y < 1000; y++){
+                Random rand = new Random();
+                int pullFrom = rand.nextInt(2);
+                if(pullFrom == 0){
+                    pW.setArgb(x, y, pR1.getArgb(x,y));
+                }else{
+                    pW.setArgb(x, y, pR2.getArgb(x,y));
+                }
+
+            }
+        }
+
+        // Create a new grid pane
+        return wImg;
     }
 
     public ImageView smooth(WritableImage img){
