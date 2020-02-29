@@ -26,7 +26,7 @@ public class UI extends Application{
         RandomPixelCombine rPC = new RandomPixelCombine();
         Smooth smooth = new Smooth();
         Image tempImage = rPC.applyComboFilter(img1, img2);
-        //tempImage = smooth.apply(tempImage);
+        
         ImageView img = new ImageView(tempImage);
         img.setFitHeight(1000);
         img.setFitWidth(1000);

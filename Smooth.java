@@ -16,8 +16,9 @@ public class Smooth implements Tool{
                         int prevCol = pR.getArgb(x-1,y);
                         int nextCol = pR.getArgb(x+1,y);
 
-                        //Squares the surrounding pixel values and averages them to smooth the image
-                        pW.setArgb(((int)(Math.sqrt(curCol)+Math.sqrt(prevCol)+Math.sqrt(nextCol))/3), x, y);
+                        //Needs to take the average for x surounding pixels
+                        //Then apply the average to each of the x surrounding pixels
+                        //pW.setArgb(x, y, ((int)(curCol+prevCol+nextCol)/3));
 
                     }
                 }
