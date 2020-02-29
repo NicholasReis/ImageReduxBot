@@ -1,5 +1,5 @@
 #BlueJ class context
-comment0.target=Tool
+comment0.target=Smooth
 comment1.params=image
 comment1.target=javafx.scene.image.WritableImage\ apply(javafx.scene.image.WritableImage)
 numComments=2
