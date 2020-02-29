@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=ImageGrabber
+comment1.params=image
+comment1.target=javafx.scene.image.WritableImage\ apply(javafx.scene.image.Image)
+numComments=2
