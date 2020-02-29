@@ -4,7 +4,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.PixelReader;
 
 public class Smooth implements Tool{
-    public WritableImage apply(WritableImage image){
+    public WritableImage apply(Image image){
         PixelReader pR = image.getPixelReader();
         WritableImage wImg = new WritableImage((int)image.getWidth(), (int)image.getHeight());
         PixelWriter pW = wImg.getPixelWriter(); //Not sure why this isn't working

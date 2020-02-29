@@ -23,8 +23,10 @@ public class UI extends Application{
         Image img1 = new Image("res/" + files.get(0));//Potentially resize later?
         Image img2 = new Image("res/" + files.get(1));//Potentially resize later?
         LineByLineCombine lBLC = new LineByLineCombine();
+        RandomPixelCombine rPC = new RandomPixelCombine();
         Smooth smooth = new Smooth();
-        Image tempImage = smooth.apply(lBLC.applyComboFilter(img1, img2));
+        Image tempImage = rPC.applyComboFilter(img1, img2);
+        //tempImage = smooth.apply(tempImage);
         ImageView img = new ImageView(tempImage);
         img.setFitHeight(1000);
         img.setFitWidth(1000);
