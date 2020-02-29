@@ -14,7 +14,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ImageTest extends Application{
+public class UI extends Application{
     @Override
     public void start(Stage stage)
     {
@@ -174,22 +174,5 @@ public class ImageTest extends Application{
         // Create a new grid pane
         return new ImageView(img);
     }
-    /* Will add later. Will need to import 2DGraphics, but might make
-     * images an object so I can do that in the class if I go that route
-    public String resize(String f){
-    ImageView img = new ImageView(new Image(f));
-    img.setFitHeight(1000);
-    img.setFitWidth(1000);
-    try {
-    // retrieve image
-    File outputfile = new File(f);
-    BufferedImage bImage = (BufferedImage) new Image(;
-    ImageIO.write(bImage, "png", outputfile);
-    System.out.println(bImage.getWidth());
-    System.out.println(bImage.getWidth());
-    } catch (Exception e) {
-    e.printStackTrace();
-    }
-    return f;
-    }*/
+    
 }
