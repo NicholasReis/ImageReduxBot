@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=EffectData
+comment1.params=tempName\ tempValue
+comment1.target=EffectData(java.lang.String,\ int)
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=
+comment3.target=int\ getValue()
+comment4.params=increaseBy
+comment4.target=void\ add(int)
+numComments=5

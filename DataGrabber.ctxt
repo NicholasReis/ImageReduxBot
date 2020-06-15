@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=DataGrabber
+comment1.params=
+comment1.target=DataGrabber()
+comment2.params=
+comment2.target=void\ populate()
+comment3.params=
+comment3.target=void\ loadData()
+comment4.params=
+comment4.target=void\ calculateWeights()
+comment5.params=
+comment5.target=java.util.ArrayList\ getFilterRank()
+comment6.params=
+comment6.target=java.util.ArrayList\ getCombinationRank()
+comment7.params=
+comment7.target=java.lang.String\ chooseFilter()
+comment8.params=
+comment8.target=java.lang.String\ chooseCombo()
+numComments=9

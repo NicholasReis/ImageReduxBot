@@ -5,20 +5,22 @@ import javafx.scene.image.PixelReader;
 import java.util.Random;
 
 public class RandomPixelCombine implements CombinationFilter{
-    public WritableImage applyComboFilter(Image image1, Image image2){
+    public WritableImage apply(Image image1, Image image2){
         PixelReader pR1 = image1.getPixelReader();
         PixelReader pR2 = image2.getPixelReader();
         WritableImage wImg = new WritableImage((int)image1.getWidth(), (int)image1.getHeight());
         PixelWriter pW = wImg.getPixelWriter();
-
-        for(int x = 0; x < 1000; x++){
-            for(int y = 0; y < 1000; y++){
+        int height = limitingHeight(image1, image2);
+        int width = limitingWidth(image1, image2);
+        
+        for(int x = 0; x < height; x++){
+            for(int y = 0; y < width; y++){
                 Random rand = new Random();
                 int pullFrom = rand.nextInt(2);
                 if(pullFrom == 0){
-                    pW.setArgb(x, y, pR1.getArgb(x,y));
+                    pW.setArgb(y, x, pR1.getArgb(y,x));
                 }else{
-                    pW.setArgb(x, y, pR2.getArgb(x,y));
+                    pW.setArgb(y, x, pR2.getArgb(y,x));
                 }
 
             }
@@ -26,5 +28,22 @@ public class RandomPixelCombine implements CombinationFilter{
 
         // Create a new grid pane
         return wImg;
+    }
+    
+    
+    public int limitingHeight(Image image1, Image image2){
+        if((int)image1.getHeight() > (int)image2.getHeight()){
+            return (int)image2.getHeight();
+        }else{
+            return (int)image1.getHeight();
+        }
+    }
+    
+    public int limitingWidth(Image image1, Image image2){
+        if((int)image1.getWidth() > (int)image2.getWidth()){
+            return (int)image2.getWidth();
+        }else{
+            return (int)image1.getWidth();
+        }
     }
 }

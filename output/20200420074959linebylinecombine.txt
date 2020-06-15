@@ -1,0 +1,4 @@
+20200420074959linebylinecombine
+Images: download (12).jpg, Follow-Your-Heart-Deer_800x800_SEPS-1000x1000.jpg
+Effects: ColorInverter, GradientTint
+Combination: LineByLineCombine

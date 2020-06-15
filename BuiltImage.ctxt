@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=BuiltImage
+comment1.params=str
+comment1.target=void\ registerImage(java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=str
+comment3.target=void\ registerEffect(java.lang.String)
+comment4.params=
+comment4.target=java.lang.String\ getEffect()
+comment5.params=tempImg
+comment5.target=void\ setImage(javafx.scene.image.Image)
+comment6.params=
+comment6.target=javafx.scene.image.Image\ getImage()
+numComments=7

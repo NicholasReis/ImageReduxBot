@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=ImageState
+comment1.params=dataFile
+comment1.target=ImageState(java.io.File)
+comment2.params=
+comment2.target=java.lang.String[]\ getEffects()
+comment3.params=
+comment3.target=java.lang.String\ getCombination()
+comment4.params=
+comment4.target=int\ getLikes()
+comment5.params=
+comment5.target=int\ getReplies()
+comment6.params=
+comment6.target=int\ getReblogs()
+numComments=7

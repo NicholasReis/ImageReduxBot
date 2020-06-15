@@ -1,0 +1,4 @@
+20200420075807randompixelcombine
+Images: download (12).jpg, cntv-series-winterfire-1000x1000.jpg
+Effects: Darken, GradientTint
+Combination: RandomPixelCombine

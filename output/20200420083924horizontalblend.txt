@@ -1,0 +1,4 @@
+20200420083924horizontalblend
+Images: download (6).jpg, FNAS-1000x1000-RGB-72DPI.jpg
+Effects: GradientTint, ColorInverter
+Combination: HorizontalBlend

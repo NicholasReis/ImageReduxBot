@@ -1,5 +1,0 @@
-#BlueJ class context
-comment0.target=CombinationFilter
-comment1.params=image1\ image2
-comment1.target=javafx.scene.image.WritableImage\ applyComboFilter(javafx.scene.image.Image,\ javafx.scene.image.Image)
-numComments=2

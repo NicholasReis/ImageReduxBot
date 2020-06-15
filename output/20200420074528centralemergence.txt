@@ -1,0 +1,4 @@
+20200420074528centralemergence
+Images: download (13).jpg, download (2).jpg
+Effects: GradientTint, Brighten
+Combination: CentralEmergence

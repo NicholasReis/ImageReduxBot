@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=CentralEmergence
+comment1.params=image1\ image2
+comment1.target=javafx.scene.image.WritableImage\ apply(javafx.scene.image.Image,\ javafx.scene.image.Image)
+comment2.params=image1\ image2
+comment2.target=int\ limitingHeight(javafx.scene.image.Image,\ javafx.scene.image.Image)
+comment3.params=image1\ image2
+comment3.target=int\ limitingWidth(javafx.scene.image.Image,\ javafx.scene.image.Image)
+numComments=4

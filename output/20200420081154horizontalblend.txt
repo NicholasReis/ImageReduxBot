@@ -1,0 +1,4 @@
+20200420081154horizontalblend
+Images: i8-6.jpg, aIAZsYj.jpg
+Effects: Brighten, Darken
+Combination: HorizontalBlend

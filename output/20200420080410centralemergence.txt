@@ -1,0 +1,4 @@
+20200420080410centralemergence
+Images: Elemental-Kitsune_800x800_SEPS-1000x1000.jpg, 7NKtTn.jpg
+Effects: Brighten, ColorInverter
+Combination: CentralEmergence

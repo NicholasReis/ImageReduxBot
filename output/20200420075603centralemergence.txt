@@ -1,0 +1,4 @@
+20200420075603centralemergence
+Images: DCE-Placeholder-1000x1000.jpg, download (6).jpg
+Effects: GradientTint, GradientTint
+Combination: CentralEmergence

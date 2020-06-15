@@ -1,0 +1,4 @@
+20200420075348linebylinecombine
+Images: c78939b7-4c10-4d14-ab74-722d080cccca.sized-1000x1000.jpg, aIAZsYj.jpg
+Effects: Darken, Darken
+Combination: LineByLineCombine
